@@ -1,16 +1,13 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import java.util.Set;
 
-public class TrainingTests {
+public class TrainingTests extends BaseTest {
+
     @Test
     public void handlingMultipleWindows() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\nanis\\chromedriver_win32\\chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("https://demoqa.com/browser-windows");
         WebElement ele1 = driver.findElement(By.id("windowButton"));
         String parentWindow = driver.getWindowHandle();
@@ -29,8 +26,6 @@ public class TrainingTests {
         driver.switchTo().window(parentWindow);
         WebElement ele3 = driver.findElement(By.xpath("//div[contains(text(),'Browser Windows')]"));
         System.out.println(ele3.getText());
-
-        driver.close();
     }
 }
 

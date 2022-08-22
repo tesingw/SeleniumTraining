@@ -2,6 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite">
     <test name="Test Basics 1">
+        <groups>
+            <run>
+                <!-- <include name="smoke"/> -->
+                <include name="regression"/>
+                <exclude name="smoke"/>
+            </run>
+        </groups>
         <classes>
             <class name="TrainingTests"/>
             <class name="TestNGTests"/>

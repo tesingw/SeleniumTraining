@@ -5,28 +5,43 @@ import org.testng.annotations.Test;
 
 public class TestNGTests extends BaseTest {
 
-    @Test
-    public void test1() {
-        driver.get("https://www.flipkart.com/");
-        WebElement ele1 = driver.findElement(By.xpath("//img[@alt='Electronics']"));
-        Actions action = new Actions(driver);
-        action.moveToElement(ele1).build().perform();
-        WebElement ele2 = driver.findElement(By.xpath("//a[text()='Audio']"));
-        ele2.click();
+//    @Test(priority = 1)
+//    public void test1() {
+//        driver.get("https://www.flipkart.com/");
+//        WebElement ele1 = driver.findElement(By.xpath("//img[@alt='Electronics']"));
+//        Actions action = new Actions(driver);
+//        action.moveToElement(ele1).build().perform();
+//        WebElement ele2 = driver.findElement(By.xpath("//a[text()='Audio']"));
+//        ele2.click();
+//    }
+
+//    @Test(priority = 2)
+//    public void atest2() {
+//        System.out.println("Test 2");
+//    }
+//
+//    @Test(priority = 3)
+//    public void ctest3() {
+//        System.out.println("Test 3");
+//    }
+//
+//    @Test(priority = -200)
+//    public void btest4() {
+//        System.out.println("Test 4");
+//    }
+//
+//    @Test(priority = -1)
+//    public void btest5() {
+//        System.out.println("Test 5");
+//    }
+
+    @Test(groups = "smoke")
+    public void userSignUp() {
+        System.out.println("User Signing Up");
     }
 
-    @Test
-    public void atest2() {
-        System.out.println("Test 2");
-    }
-
-    @Test
-    public void ctest3() {
-        System.out.println("Test 3");
-    }
-
-    @Test
-    public void btest4() {
-        System.out.println("Test 4");
+    @Test(groups = "regression")
+    public void updateUserDetails() {
+        System.out.println("User Updating the details");
     }
 }

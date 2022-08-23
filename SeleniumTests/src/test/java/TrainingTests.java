@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.Set;
@@ -30,19 +32,36 @@ public class TrainingTests extends BaseTest {
 
     //boolean : true or false
 
-    @Test(groups = "smoke",description = "TestCase1")
-    public void userLogin() {
-        System.out.println("User Login");
+//    @Test(groups = "smoke", description = "TestCase1")
+//    public void userLogin() {
+//        System.out.println("User Login");
+//    }
+//
+//    @Test(groups = "regression", timeOut = 2000)
+//    public void placeAnOrder() {
+//        System.out.println("Order Placed");
+//    }
+//
+//    @Test(groups = "regression")
+//    public void placeAnOrders() {
+//        System.out.println("Orders Placed");
+//    }
+
+//    @Test
+//    @Parameters("Browser")
+//    public void testParameters(String getBrowserName) {
+//        System.out.println(getBrowserName);
+//    }
+
+    @Test(dataProvider = "dataProviderTest")
+    public void testDataProviders(String browserName, String browserValue) {
+        System.out.println(browserName + " " + browserValue);
     }
 
-    @Test(groups = "regression", timeOut = 2000)
-    public void placeAnOrder() {
-        System.out.println("Order Placed");
-    }
-
-    @Test(groups = "regression")
-    public void placeAnOrders() {
-        System.out.println("Orders Placed");
+    @DataProvider
+    public Object[][] dataProviderTest() {
+        //How to read data from Excel.
+        return new Object[][]{new Object[]{"ChromeBrowser", "chrome"}, new Object[]{"IEBrowser", "ie"}, new Object[]{"FirefoxBrowser", "firefox"}};
     }
 }
 

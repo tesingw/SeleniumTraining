@@ -1,15 +1,19 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.Set;
 
 public class TrainingTests extends BaseTest {
+    TestNGTests obj = new TestNGTests();
 
     @Test
-    public void handlingMultipleWindows() {
+    public void handlingMultipleWindows() throws Exception {
         driver.get("https://demoqa.com/browser-windows");
         WebElement ele1 = driver.findElement(By.id("windowButton"));
         String parentWindow = driver.getWindowHandle();
@@ -19,6 +23,7 @@ public class TrainingTests extends BaseTest {
             if (!window.equalsIgnoreCase(parentWindow)) {
                 driver.switchTo().window(window);
                 driver.manage().window().maximize();
+                takesScreenshot();
                 WebElement ele2 = driver.findElement(By.id("sampleHeading"));
                 String getValue = ele2.getText();
                 System.out.println(getValue);
@@ -62,6 +67,13 @@ public class TrainingTests extends BaseTest {
     public Object[][] dataProviderTest() {
         //How to read data from Excel.
         return new Object[][]{new Object[]{"ChromeBrowser", "chrome"}, new Object[]{"IEBrowser", "ie"}, new Object[]{"FirefoxBrowser", "firefox"}};
+    }
+
+    public void takesScreenshot() throws Exception {
+        String path = System.getProperty("user.dir");
+        System.out.println(path);
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileHandler.copy(file, new File(System.getProperty("user.dir") + "\\" + "Screenshots" + "\\" + "test.png"));
     }
 }
 

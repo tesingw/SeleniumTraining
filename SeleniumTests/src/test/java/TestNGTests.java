@@ -4,18 +4,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class TestNGTests extends BaseTest {
 
     @Test(priority = 1)
-    public void test1() throws IOException, InterruptedException {
+    public void test1() throws Exception {
         driver.get("https://www.flipkart.com/");
         WebElement ele = driver.findElement(By.xpath("//button[@class='_2KpZ6l _2doB4z']"));
         ele.click();
@@ -29,7 +26,7 @@ public class TestNGTests extends BaseTest {
         //WebDriverWait wait = new WebDriverWait(driver,30);
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Audio')]")));
         //wait.pollingEvery(6);
-        //takesScreenshot();
+        takesScreenshot();
         ele2.click();
     }
 
@@ -63,8 +60,10 @@ public class TestNGTests extends BaseTest {
 //        System.out.println("User Updating the details");
 //    }
 
-    public void takesScreenshot() throws IOException {
+    public void takesScreenshot() throws Exception {
+        String path = System.getProperty("user.dir");
+        System.out.println(path);
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileHandler.copy(file, new File(".\\Screenshots" + "\\" + "Screenshots" + ".png"));
+        FileHandler.copy(file, new File(System.getProperty("user.dir") + "\\" + "Screenshots" + "\\" + "test.png"));
     }
 }

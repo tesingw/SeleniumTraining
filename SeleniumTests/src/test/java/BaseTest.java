@@ -27,6 +27,6 @@ public class BaseTest {
         String path = System.getProperty("user.dir");
         System.out.println(path);
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileHandler.copy(file, new File(System.getProperty("user.dir") + "\\" + "Screenshots" + "\\" + "test.png"));
+        FileHandler.copy(file, new File(System.getProperty("user.dir") + "\\src\\" + "Screenshots" + "\\" + "test.png"));
     }
 }

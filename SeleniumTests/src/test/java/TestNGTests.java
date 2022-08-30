@@ -1,12 +1,8 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class TestNGTests extends BaseTest {
@@ -60,10 +56,4 @@ public class TestNGTests extends BaseTest {
 //        System.out.println("User Updating the details");
 //    }
 
-    public void takesScreenshot() throws Exception {
-        String path = System.getProperty("user.dir");
-        System.out.println(path);
-        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileHandler.copy(file, new File(System.getProperty("user.dir") + "\\" + "Screenshots" + "\\" + "test.png"));
-    }
 }

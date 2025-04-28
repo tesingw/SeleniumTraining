@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'github-creds', url: 'https://github.com/your-username/SeleniumTraining.git', branch: 'main'
+                git credentialsId: 'GitHubId', url: 'https://github.com/your-username/SeleniumTraining.git', branch: 'main'
             }
         }
 

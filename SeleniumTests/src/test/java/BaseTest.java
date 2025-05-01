@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
 
@@ -28,5 +29,10 @@ public class BaseTest {
         System.out.println(path);
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileHandler.copy(file, new File(System.getProperty("user.dir") + "\\src\\" + "Screenshots" + "\\" + "test.png"));
+    }
+
+    @Test
+    public void test() {
+        System.out.println("test");
     }
 }

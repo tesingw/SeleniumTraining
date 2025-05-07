@@ -2,12 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.8.1'   // This must match the name in Jenkins global tool config
-        jdk 'JDK 11'          // Or whatever JDK version you configured in Jenkins
-    }
-
-    environment {
-        MAVEN_OPTS = '-Dmaven.test.failure.ignore=false'
+        maven 'Maven 3.8.1'
+        jdk 'JDK 11'
     }
 
     stages {
@@ -20,19 +16,19 @@ pipeline {
 
         stage('Build Project') {
             steps {
-                echo 'Building project...'
+                echo 'Building the project...'
                 sh 'mvn clean compile'
             }
         }
 
-        stage('Run Tests') {
+        stage('Run TestNG Tests') {
             steps {
                 echo 'Running TestNG tests...'
                 sh 'mvn test'
             }
             post {
                 always {
-                    echo 'Publishing test results...'
+                    echo 'Publishing TestNG results...'
                     junit '**/target/surefire-reports/testng-results.xml'
                 }
             }
@@ -40,27 +36,18 @@ pipeline {
 
         stage('Package') {
             steps {
-                echo 'Packaging application...'
+                echo 'Packaging the application...'
                 sh 'mvn package'
-            }
-        }
-
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
     }
 
     post {
         success {
-            echo '✅ Build completed successfully!'
+            echo '✅ Build completed successfully.'
         }
         failure {
-            echo '❌ Build failed!'
-            mail to: 'your-email@example.com',
-                 subject: "Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "Check the Jenkins job here: ${env.BUILD_URL}"
+            echo '❌ Build failed.'
         }
     }
 }

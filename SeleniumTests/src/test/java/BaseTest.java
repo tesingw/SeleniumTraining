@@ -13,7 +13,8 @@ public class BaseTest {
 
     @BeforeClass
     public void initializeTests() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\nanis\\chromedriver_win32\\chromedriver.exe");
+        String driverPath = System.getProperty("user.dir") + "\\Drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", driverPath);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
